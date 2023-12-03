@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-import io
-import os
-import re
 import sys
 
 from setuptools import find_packages, setup
@@ -39,22 +36,9 @@ except ImportError:
 # Other requirements
 install_requires += ["scipy", "jaxtyping>=0.2.9", "typeguard~=2.13.3"]
 
-
-# Get version
-def find_version(*file_paths):
-    try:
-        with io.open(os.path.join(os.path.dirname(__file__), *file_paths), encoding="utf8") as fp:
-            version_file = fp.read()
-        version_match = re.search(r"^__version__ = version = ['\"]([^'\"]*)['\"]", version_file, re.M)
-        return version_match.group(1)
-    except Exception:
-        return None
-
-
 # Run the setup
 setup(
     name="linear_operator",
-    version=find_version("linear_operator", "version.py"),
     description=(
         "A linear operator implementation, primarily designed for finite-dimensional "
         "positive definite operators (i.e. kernel matrices)."
